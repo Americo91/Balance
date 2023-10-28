@@ -1,7 +1,9 @@
 package com.astoppello.balance.repositories;
 
 import com.astoppello.balance.entities.MonthBalance;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,10 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MonthBalanceRepositoryTest {
 
     @Autowired
     MonthBalanceRepository monthBalanceRepository;
+    private MonthBalance saved;
+
+    @AfterAll
+    void cleanUp(){ monthBalanceRepository.deleteById(saved.getId());}
 
     @Test
     void testRepo() {
@@ -27,7 +34,7 @@ class MonthBalanceRepositoryTest {
                                       .expenses(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_DOWN))
                                       .salary(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_DOWN))
                                       .build();
-        MonthBalance saved = monthBalanceRepository.save(mb);
+        saved = monthBalanceRepository.save(mb);
         assertThat(saved).isNotNull();
         assertThat(saved.getId()).isNotNull();
 
