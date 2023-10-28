@@ -26,11 +26,4 @@ public class MonthBalance extends BaseBalance {
 
         return getMonth() != null ? getMonth().equals(that.getMonth()) : that.getMonth() == null;
     }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (getMonth() != null ? getMonth().hashCode() : 0);
-        return result;
-    }
 }
