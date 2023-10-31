@@ -1,22 +1,30 @@
 package com.astoppello.balance.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
 import java.time.Month;
+import java.time.Year;
+import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @Entity
 public class MonthBalance extends BaseBalance {
 
     @NotNull
     private Month month;
+
+    @ManyToOne()
+    private YearBalance yearBalance;
+
 
     @Override
     public boolean equals(Object o) {
