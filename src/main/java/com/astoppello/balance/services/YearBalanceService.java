@@ -11,4 +11,7 @@ public interface YearBalanceService {
     List<YearBalance> findAll();
     Optional<YearBalance> findById(UUID id);
     Optional<YearBalance> findByYear(Integer year);
+    YearBalance save(YearBalance yb);
+
+    YearBalance put(YearBalance yb, UUID uuid);
 }

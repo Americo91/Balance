@@ -1,11 +1,12 @@
 package com.astoppello.balance.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -13,7 +14,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-public class YearBalance extends BaseBalance{
+public class YearBalance extends BaseBalance {
 
     @NotNull
     private Integer year;
