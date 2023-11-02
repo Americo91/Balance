@@ -42,4 +42,24 @@ class YearBalanceServiceTest {
 
         assertThat(service.findById(yearBalance.getId())).isPresent();
     }
+
+    @Test
+    void save() {
+        YearBalance yb = YearBalance.builder().year(2017).build();
+        final YearBalance savedYb = service.save(yb);
+        assertThat(savedYb).isNotNull();
+        assertThat(savedYb.getId()).isNotNull();
+        assertThat(savedYb.getYear()).isEqualTo(2017);
+    }
+
+    @Test
+    void put() {
+        YearBalance yb = YearBalance.builder().year(2017).build();
+        final YearBalance savedYb = service.save(yb);
+        YearBalance update = YearBalance.builder().year(1990).build();
+        YearBalance updated = service.put(update, yb.getId());
+        assertThat(updated).isNotNull();
+        assertThat(updated.getId()).isEqualTo(yb.getId());
+        assertThat(updated.getYear()).isEqualTo(1990);
+    }
 }

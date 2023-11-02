@@ -11,4 +11,8 @@ public interface MonthBalanceService {
     List<MonthBalance> findAll();
     List<MonthBalance> findByMonth(Month month);
     Optional<MonthBalance> findById(UUID id);
+    MonthBalance create(MonthBalance mb, UUID yearBalanceId);
+
+    MonthBalance put(MonthBalance mb, UUID monthBalanceId);
+
 }

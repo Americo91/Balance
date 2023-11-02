@@ -2,6 +2,7 @@ package com.astoppello.balance.services;
 
 import com.astoppello.balance.entities.YearBalance;
 import com.astoppello.balance.repositories.YearBalanceRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,17 @@ public class YearBalanceServiceImpl implements YearBalanceService {
     @Override
     public Optional<YearBalance> findByYear(Integer year) {
         return yearBalanceRepository.findByYear(year);
+    }
+
+    @Override
+    public YearBalance save(YearBalance yb) {
+        return yearBalanceRepository.save(yb);
+    }
+
+    @Override
+    public YearBalance put(YearBalance yb, UUID uuid) {
+        YearBalance yearBalance = findById(uuid).orElseThrow(EntityNotFoundException::new);
+        yearBalance.setYear(yb.getYear());
+        return yearBalanceRepository.save(yearBalance);
     }
 }
