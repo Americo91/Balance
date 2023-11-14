@@ -10,6 +10,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @SuperBuilder
 public class YearBalanceResponse extends YearBalancePost {
     private UUID id;
