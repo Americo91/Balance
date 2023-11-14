@@ -16,6 +16,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @SuperBuilder
+@EqualsAndHashCode
 @Entity
 public class MonthBalance extends BaseBalance {
 

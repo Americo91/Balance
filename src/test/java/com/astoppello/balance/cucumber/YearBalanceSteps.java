@@ -2,14 +2,14 @@ package com.astoppello.balance.cucumber;
 
 import com.astoppello.balance.controllers.dto.YearBalanceResponse;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.ScenarioScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.HttpClientErrorException;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Created by @author stopp on 19/12/2021
@@ -38,5 +38,14 @@ public class YearBalanceSteps {
         assertThatThrownBy(() -> yearBalanceClient.findYearBalanceByYear(year))
                 .isInstanceOf(HttpClientErrorException.class)
                 .hasMessageContaining("404");
+    }
+
+    @When("yearBalance year={int} is retrieved by id")
+    public void yearbalanceYearIsRetrievedById(int year) {
+        YearBalanceResponse yb = yearBalanceClient.findYearBalanceByYear(year);
+        assertThat(yb).isNotNull();
+        YearBalanceResponse yearBalanceById = yearBalanceClient.findYearBalanceById(yb.getId());
+        assertThat(yearBalanceById).isNotNull();
+        assertThat(yearBalanceById).isEqualTo(yb);
     }
 }

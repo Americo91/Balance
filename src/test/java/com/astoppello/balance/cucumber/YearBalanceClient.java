@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.UUID;
+
 /** Created by @author stopp on 19/12/2021 */
 @Component
 @ScenarioScope
@@ -41,6 +43,13 @@ public class YearBalanceClient {
   public YearBalanceResponse createYearBalance(YearBalancePost yearBalanceDTO) {
     final String url = String.format("%s:%d%s", HOST_URL, port, YearBalanceController.YEAR_BALANCE_PATH);
     ResponseEntity<YearBalanceResponse> response = restTemplate.postForEntity(url, yearBalanceDTO, YearBalanceResponse.class);
+    return response.getBody();
+  }
+
+  public YearBalanceResponse findYearBalanceById(UUID id) {
+    final String url = String.format("%s:%d%s/%s", HOST_URL, port, YearBalanceController.YEAR_BALANCE_PATH, id);
+    logger.info("url: {}", url);
+    ResponseEntity<YearBalanceResponse> response = restTemplate.getForEntity(url, YearBalanceResponse.class);
     return response.getBody();
   }
 }
