@@ -1,6 +1,6 @@
 Feature: YearBalance lifecycle
 
-  Scenario: Initial yearBalance list is empty
+  Scenario: Initial yearBalance list
     Given there are 1 yearBalances
 
   Scenario: Find by year

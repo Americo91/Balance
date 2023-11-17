@@ -16,7 +16,7 @@ public class Bootstrap implements CommandLineRunner {
 
     @Transactional
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         yearBalanceRepository.save(YearBalance.builder().year(2021).id(UUID.randomUUID()).build());
     }
 }

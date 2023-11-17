@@ -2,7 +2,6 @@ package com.astoppello.balance.cucumber;
 
 import com.astoppello.balance.controllers.dto.YearBalanceResponse;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.ScenarioScope;
 import org.springframework.beans.factory.annotation.Autowired;
